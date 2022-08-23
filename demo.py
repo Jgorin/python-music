@@ -9,11 +9,11 @@ song_path = f"{os.getcwd()}/test/data/song1"
 board = Board(name="demo", samplerate=44100)
 master = board.tracks["master"]
 # tracks = board.load_stems(f"{song_path}/stems")
-track = board.quick_load("/Users/josh/personal/python_music/stereo_test.wav")
+track = board.quick_load("/Users/josh/personal/python_music/test/data/song1/stems/ACOUSTIC GTR TF39.wav")
 
 delay = board.add_send_track("delay")
 track.add_patch(delay, -10)
-track.remove_output(master)
+# track.remove_output(master)
 
 # t1 = board.quick_load("/Users/josh/personal/python_music/stereo_test.wav")
 # delay_send = board.add_send_track("delay")
@@ -22,4 +22,4 @@ track.remove_output(master)
 
 # t1.add_send(delay_send)
 
-board.bounce_stems("bounces/delay_stems")
+board.bounce_stems("bounces/test")

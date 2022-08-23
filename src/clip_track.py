@@ -41,7 +41,9 @@ class ClipTrack(Track):
     self.outputs.remove(out)
     
   def sum(self, length=None):
+    print(f"summing clip track {self.name}, length: {length}")
     def f(res, input):
+      print(input.data[:length].shape)
       res[input.sample_start:input.sample_end,:] = input.data[:length]
     return super().apply_fx(self.repeat(f, self.clips, length))
   

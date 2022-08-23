@@ -10,6 +10,8 @@ class Patch:
     self.fader.set_gain(volume, mode)
   
   def sum(self, length=None):
+    print(f"Summing patch {self.input.name} - {self.output.name}")
+    input_sum = self.input.sum(length=length)
     return self.fader.apply(self.input.sum(length=length), self.input.samplerate)
   
   def remove(self):

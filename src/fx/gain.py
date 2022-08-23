@@ -6,6 +6,7 @@ class Gain:
     self.set_gain(input, mode)
   
   def apply(self, input, samplerate):
+    print(input.shape)
     return input * self.gain
   
   def set_gain(self, input, mode="decibels"):

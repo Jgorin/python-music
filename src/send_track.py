@@ -30,11 +30,13 @@ class SendTrack(Track):
     return end
   
   def sum(self, length=None):
+    print(f"summing send track {self.name}")
     if length is None:
-      length = int(self.get_send_sample_length() / self.samplerate)
+      length = self.get_send_sample_length()
+    else:
+      length = length / self.samplerate
     def f(res, input):
-      breakpoint()
-      res += input.sum(length * self.samplerate)
+      res += input.sum(length)
     return super().apply_fx(self.repeat(f, self.inputs, length))
 
   def add_input(self, input):

@@ -19,9 +19,7 @@ class Track():
     return 0 if len(tracks) == 0 else max([o.sample_end for o in tracks])
   
   def repeat(self, function, inputs, length=None):
-    if length is not None:
-      length *= self.samplerate
-    else:
+    if length is None:
       length = self.get_sample_length(inputs)
     res = np.zeros((length, 2))
     for input in inputs:
@@ -40,8 +38,10 @@ class Track():
     wavfile.write(local_path, self.samplerate, (sum * 2**15).astype(np.int16))
   
   def apply_fx(self, input):
+    print(f"applying fx to {self.name}, input shape: {input.shape}")
     res = input
     for f in self.fx:
+      print(f"applying {type(f)} to {self.name}")
       res = f.apply(res, self.samplerate)
     return res
   
